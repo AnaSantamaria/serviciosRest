@@ -1,6 +1,6 @@
 package controller;
 
-import jakarta.websocket.server.PathParam;
+
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -29,7 +29,7 @@ public class SaludoController {
 	@GET //El metodo se ejecutará con peticiones GET
 	@Path("/saludar/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getsaludoPersonal(@PathParam("name") String nombre) {
+	public String getsaludoPersonal(@jakarta.ws.rs.PathParam("name") String nombre) {
 		return "Bienvenido querid@" +nombre;
 		
 		

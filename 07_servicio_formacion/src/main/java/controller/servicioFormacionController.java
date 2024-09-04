@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import jakarta.websocket.server.PathParam;
+
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -19,7 +19,7 @@ public class servicioFormacionController {
 	@GET
 	@Path("/buscar/{area}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List <Curso> cursoArea( @PathParam("area") String area) {
+	public List <Curso> cursoArea( @jakarta.ws.rs.PathParam("area") String area) {
 		
 		return service.buscarPorArea(area);
 	}

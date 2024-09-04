@@ -32,7 +32,7 @@ public class CursosController {
 	@DELETE
 	@Path("/eliminar/{nombre}")
 	//@Consumnes o @Produces no se pone ya que ni se recibe ni a generar nada en el cuerpo
-	public void eliminar(@PathParam("nombre") String nombre) {
+	public void eliminar(@jakarta.ws.rs.PathParam("nombre") String nombre) {
 		cursosService.eliminar(nombre);
 		
 		
