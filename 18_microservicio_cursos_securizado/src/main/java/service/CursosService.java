@@ -6,7 +6,7 @@ import model.Curso;
 
 public interface CursosService {
 
-	void alta(Curso curso);
+	boolean alta(Curso curso);
 
 	void eliminar(String nombre);
 

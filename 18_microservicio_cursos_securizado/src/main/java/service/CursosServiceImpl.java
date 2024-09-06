@@ -32,8 +32,12 @@ public class CursosServiceImpl implements CursosService {
 
 
 	@Override
-	public void alta(Curso curso) {
-		cursos.add(curso);
+	public boolean alta(Curso curso) {
+		if(buscarCurso(curso.getNombre())==null) {
+			cursos.add(curso);
+			return true;
+		}
+		return false;
 	}
 
 	@Override

@@ -42,8 +42,8 @@ public class FormacionServiceImpl implements FormacionService {
 		.uri(url+"alta")
 		.contentType(MediaType.APPLICATION_JSON)
 		.body(curso)// es lo que quiero meter en el body
-		.retrieve();// es para realizar la llamarda
-
+		.retrieve()// es para realizar la llamarda
+		.toBodilessEntity();//para que muestre el error si lo hubiera??
 	}
 
 }
