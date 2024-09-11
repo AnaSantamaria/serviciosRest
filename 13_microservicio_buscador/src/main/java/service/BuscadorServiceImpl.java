@@ -20,9 +20,9 @@ public class BuscadorServiceImpl implements BuscadorService {
 	}
 
 	@Override
-	public List<ResultadoDto> buscar(String tematica) {
+	public List<ResultadoDto> buscar(String url) {
 		
-		return buscadorDao.findByTematica(tematica).stream()
+		return buscadorDao.findByTematica(url).stream()
 				.map(r->mapeador.resultadoEntityToDto(r))
 				.toList();
 	}

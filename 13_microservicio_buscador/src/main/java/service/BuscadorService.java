@@ -6,7 +6,7 @@ import model.ResultadoDto;
 
 public interface BuscadorService {
 	
-	List<ResultadoDto> buscar(String tematica);
+	List<ResultadoDto> buscar(String url);
 	boolean agregar(ResultadoDto resultado);
 	
 	

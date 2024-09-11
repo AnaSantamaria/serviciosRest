@@ -23,8 +23,8 @@ public class BuscadorController {
 	@Qualifier("buscadorEstandar")
 	BuscadorService service;
 	
-	@GetMapping(value="buscar/{tematica}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<ResultadoDto>  buscarResultados(@PathVariable("tematica") String tematica) {
+	@GetMapping(value="buscar/{url}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<ResultadoDto>  buscarResultados(@PathVariable("url") String tematica) {
 		
 	
 		return service.buscar(tematica);
