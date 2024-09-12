@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.ResultadoDto;
@@ -23,8 +24,8 @@ public class BuscadorController {
 	@Qualifier("buscadorEstandar")
 	BuscadorService service;
 	
-	@GetMapping(value="buscar/{url}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<ResultadoDto>  buscarResultados(@PathVariable("url") String tematica) {
+	@GetMapping(value="buscar/{tematica}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<ResultadoDto>  buscarResultados(@PathVariable("tematica") String tematica) {
 		
 	
 		return service.buscar(tematica);
@@ -35,5 +36,9 @@ public class BuscadorController {
 		
 		service.agregar(resultado);
 	}
-
+	@GetMapping(value="buscar",produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResultadoDto buscarPorUrl (@RequestParam("url") String url) {
+		return service.buscarPorUrl(url);
+		
+	}
 }

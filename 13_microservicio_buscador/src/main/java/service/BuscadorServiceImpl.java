@@ -1,12 +1,19 @@
 package service;
 
+
 import java.util.List;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import dao.BuscadorDao;
 import entities.Resultado;
 import model.ResultadoDto;
 import utilidades.Mapeador;
 
+
+@Service("buscadorEstandar")
+@Scope("singleton")
 public class BuscadorServiceImpl implements BuscadorService {
 	
 	BuscadorDao buscadorDao;
@@ -20,9 +27,9 @@ public class BuscadorServiceImpl implements BuscadorService {
 	}
 
 	@Override
-	public List<ResultadoDto> buscar(String url) {
+	public List<ResultadoDto> buscar(String tematica) {
 		
-		return buscadorDao.findByTematica(url).stream()
+		return buscadorDao.findByTematica(tematica).stream()
 				.map(r->mapeador.resultadoEntityToDto(r))
 				.toList();
 	}
@@ -36,6 +43,19 @@ public class BuscadorServiceImpl implements BuscadorService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public ResultadoDto buscarPorUrl(String url) {
+		
+		Resultado r=buscadorDao.findByUrl(url);
+		return r!=null?mapeador.resultadoEntityToDto(r):null;
+	}
+
+	@Override
+	public void eliminar(String url) {
+		buscadorDao.deleteByUrl(url);
+		
 	}
 
 }
