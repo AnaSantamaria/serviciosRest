@@ -45,11 +45,4 @@ public class LibrosServiceImpl implements LibrosService {
 				.orElse(null);
 	}
 
-	@Override
-	public List<LibroDto> recuperarTodos() {
-		return librosDao.findAll().stream()
-				.map(l->mapeador.libroEntityToDto(l))
-				.toList();
-	}
-
 }

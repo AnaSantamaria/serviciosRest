@@ -18,8 +18,8 @@ import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 public class LibrosController {
-	@Value("${eureka.instance.instance-id")//Balanceado de peticiones
-	String instancia;//
+	@Value("${eureka.instance.instance-id")
+	String instancia;
 	LibrosService librosService;
 
 	public LibrosController(LibrosService librosService) {
@@ -45,11 +45,5 @@ public class LibrosController {
 			return new ResponseEntity<>(libro,HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null,HttpStatus.CONFLICT);
-	}
-	@Operation(summary = "catalogo de libros", description = "Devuelve la lista de libros completa")
-	@GetMapping(value="catalogo",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<LibroDto> buscarTodos(){
-		System.out.println("Instancia: "+instancia);
-		return librosService.recuperarTodos();
 	}
 }

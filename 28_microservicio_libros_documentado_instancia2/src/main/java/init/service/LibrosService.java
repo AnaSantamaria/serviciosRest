@@ -8,5 +8,4 @@ public interface LibrosService {
 	boolean alta(LibroDto libro);
 	List<LibroDto> buscarLibroPortema(String tema);
 	LibroDto buscarLibroPorIsbn(int isbn);
-	List<LibroDto> recuperarTodos();
 }
