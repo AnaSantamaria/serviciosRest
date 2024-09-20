@@ -47,7 +47,7 @@ public class ClientesController {
 			
 			return new ResponseEntity<>(cliente,HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		
 	
 	}
@@ -61,7 +61,7 @@ public class ClientesController {
 			
 			return new ResponseEntity<>(cliente,HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
 	}
 }
