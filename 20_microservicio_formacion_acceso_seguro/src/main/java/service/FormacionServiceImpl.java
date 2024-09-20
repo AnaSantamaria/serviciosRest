@@ -26,6 +26,7 @@ public class FormacionServiceImpl implements FormacionService {
 	String passAdmin;
 	
 	String url="http://localhost:8000/cursos/";
+	
 	RestClient restClient;
 	
 	
