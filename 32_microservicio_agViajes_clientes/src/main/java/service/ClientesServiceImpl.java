@@ -1,10 +1,11 @@
 package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dao.ClientesDao;
 import entities.Cliente;
-
+@Service
 public class ClientesServiceImpl implements ClientesService {
 	
 	
