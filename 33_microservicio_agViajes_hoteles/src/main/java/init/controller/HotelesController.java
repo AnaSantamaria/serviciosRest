@@ -43,7 +43,7 @@ public class HotelesController {
 	}
 	
 	@GetMapping(value="buscarLocalizacion/{localizacion}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<HotelDto>> buscarPorLocalizacion(@PathVariable("localizacion") String localizacion){
+	public ResponseEntity<List<HotelDto>> buscarPorLocalizacion(@PathVariable String localizacion){
 		List<HotelDto> hoteles = hotelesService.buscarPorLocalizacion(localizacion);
 		
 		if(hoteles!=null && !hoteles.isEmpty()) {
