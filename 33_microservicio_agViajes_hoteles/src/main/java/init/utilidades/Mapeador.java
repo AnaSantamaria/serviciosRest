@@ -3,8 +3,8 @@ package init.utilidades;
 
 import org.springframework.stereotype.Component;
 
-import init.dto.HotelDto;
 import init.entities.Hotel;
+import init.model.HotelDto;
 
 @Component
 public class Mapeador {

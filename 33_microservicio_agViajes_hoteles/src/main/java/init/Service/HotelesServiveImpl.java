@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import init.dao.HotelesDao;
-import init.dto.HotelDto;
 import init.entities.Hotel;
+import init.model.HotelDto;
 import init.utilidades.Mapeador;
 @Service
 public class HotelesServiveImpl implements HotelesService {

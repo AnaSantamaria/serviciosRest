@@ -2,8 +2,8 @@ package init.Service;
 
 import java.util.List;
 
-import init.dto.HotelDto;
 import init.entities.Hotel;
+import init.model.HotelDto;
 
 public interface HotelesService {
 	

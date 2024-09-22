@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import init.Service.HotelesService;
-import init.dto.HotelDto;
+import init.model.HotelDto;
 
 
 

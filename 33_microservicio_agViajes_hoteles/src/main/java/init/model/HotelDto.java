@@ -1,4 +1,4 @@
-package init.dto;
+package init.model;
 
 public class HotelDto {
 
