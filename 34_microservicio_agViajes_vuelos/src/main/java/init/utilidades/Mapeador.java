@@ -1,16 +1,15 @@
 package init.utilidades;
 
+
+import org.springframework.stereotype.Component;
+
+
 import init.entities.Vuelo;
 import init.model.VuelosDto;
 
+@Component
 public class Mapeador {
-  
-	VuelosDto vuelosDto;
-
-	public Mapeador(VuelosDto vuelosDto) {
-		super();
-		this.vuelosDto = vuelosDto;
-	}
+	
 	
 	public VuelosDto VuelosEntityToDto (Vuelo vuelo) {
 		

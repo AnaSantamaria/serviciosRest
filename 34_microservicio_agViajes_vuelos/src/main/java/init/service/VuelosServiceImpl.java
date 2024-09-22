@@ -1,40 +1,36 @@
 package init.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import init.dao.VuelosDao;
 import init.entities.Vuelo;
 import init.model.VuelosDto;
 import init.utilidades.Mapeador;
 
+@Service
 public class VuelosServiceImpl implements VuelosService {
 	
-	private static final Integer Idvuelo = null;
+	@Autowired
 	VuelosDao vuelosDao;
+	@Autowired
 	Mapeador mapeador;
 	
 	
-	
-	
-	
-
-	public VuelosServiceImpl(VuelosDao vuelosDao, Mapeador mapeador) {
-		super();
-		this.vuelosDao = vuelosDao;
-		this.mapeador = mapeador;
-	}
-
 	@Override
 	public void actualizarPlazas(int idvuelo, int reservas) {
 		   
-		vuelosDao.actuazarPlazas(idvuelo, reservas);
+		vuelosDao.actualizarPlazas(idvuelo, reservas);
 
 	}
 
 	@Override
 	public VuelosDto buscarVuelo(int idvuelo) {
 		
-		Vuelo vuelo = vuelosDao.findById(Idvuelo).orElse(null);
+		Vuelo vuelo = vuelosDao.findById(idvuelo).orElse(null);
 		
 		if(vuelo !=null) {
 			 
@@ -46,8 +42,21 @@ public class VuelosServiceImpl implements VuelosService {
 
 	@Override
 	public List<VuelosDto> listaDeVuelos(String destino, int plazas) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		List<Vuelo> vuelos = vuelosDao.findByDestinoYPlazas(destino, plazas);
+	    List<VuelosDto> vuelosDtos = new ArrayList<>();
 
+	    if (vuelos != null && !vuelos.isEmpty()) {
+	        for (Vuelo vuelo : vuelos) {
+	            VuelosDto dto = mapeador.VuelosEntityToDto(vuelo);
+	            if (dto != null) {
+	                vuelosDtos.add(dto); 
+	            }
+	        }
+	    }
+	    
+	    return vuelosDtos;
+	}
 }
+
+
