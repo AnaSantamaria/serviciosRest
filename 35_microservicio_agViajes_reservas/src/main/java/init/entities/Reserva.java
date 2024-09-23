@@ -7,79 +7,94 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="reservas")
-
+@Table(name="hoteles")
 public class Reserva {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idreserva;
+	private int idHotel;
 	private String nombre;
-	private String dni;
-	private int hotel;
-	private int vuelo;
+	private int categoria;
 	private double precio;
+	private boolean disponible;
+	private String localizacion;
+	
 	
 	public Reserva() {
 		super();
 	}
 
-	public Reserva(int idreserva, String nombre, String dni, int hotel, int vuelo, double precio) {
+
+	public Reserva(int idHotel, String nombre, int categoria, double precio, boolean disponible, String localizacion) {
 		super();
-		this.idreserva = idreserva;
+		this.idHotel = idHotel;
 		this.nombre = nombre;
-		this.dni = dni;
-		this.hotel = hotel;
-		this.vuelo = vuelo;
+		this.categoria = categoria;
 		this.precio = precio;
+		this.disponible = disponible;
+		this.localizacion = localizacion;
 	}
 
-	public int getIdreserva() {
-		return idreserva;
+
+	public int getIdHotel() {
+		return idHotel;
 	}
 
-	public void setIdreserva(int idreserva) {
-		this.idreserva = idreserva;
+
+	public void setIdHotel(int idHotel) {
+		this.idHotel = idHotel;
 	}
+
 
 	public String getNombre() {
 		return nombre;
 	}
 
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public String getDni() {
-		return dni;
+
+	public int getCategoria() {
+		return categoria;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
 	}
 
-	public int getHotel() {
-		return hotel;
-	}
-
-	public void setHotel(int hotel) {
-		this.hotel = hotel;
-	}
-
-	public int getVuelo() {
-		return vuelo;
-	}
-
-	public void setVuelo(int vuelo) {
-		this.vuelo = vuelo;
-	}
 
 	public double getPrecio() {
 		return precio;
 	}
 
+
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-		
+
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+
+	public String getLocalizacion() {
+		return localizacion;
+	}
+
+
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
+	}
+	
+	
 
 }

@@ -7,82 +7,97 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
- @Entity
- @Table(name="vuelos")
+@Entity
+@Table(name="hoteles")
 public class Vuelo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idvuelo;
-	private String company;
-	private String fecha;
+	private int idHotel;
+	private String nombre;
+	private int categoria;
 	private double precio;
-	private int plazas;
-	private String destino;
+	private boolean disponible;
+	private String localizacion;
+	
 	
 	public Vuelo() {
 		super();
 	}
 
-	public Vuelo(int idvuelo, String company, String fecha, double precio, int plazas, String destino) {
+
+	public Vuelo(int idHotel, String nombre, int categoria, double precio, boolean disponible, String localizacion) {
 		super();
-		this.idvuelo = idvuelo;
-		this.company = company;
-		this.fecha = fecha;
+		this.idHotel = idHotel;
+		this.nombre = nombre;
+		this.categoria = categoria;
 		this.precio = precio;
-		this.plazas = plazas;
-		this.destino = destino;
+		this.disponible = disponible;
+		this.localizacion = localizacion;
 	}
 
-	public int getIdvuelo() {
-		return idvuelo;
+
+	public int getIdHotel() {
+		return idHotel;
 	}
 
-	public void setIdvuelo(int idvuelo) {
-		this.idvuelo = idvuelo;
+
+	public void setIdHotel(int idHotel) {
+		this.idHotel = idHotel;
 	}
 
-	public String getCompany() {
-		return company;
+
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getFecha() {
-		return fecha;
+
+	public int getCategoria() {
+		return categoria;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
 	}
+
 
 	public double getPrecio() {
 		return precio;
 	}
 
+
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-	public int getPlazas() {
-		return plazas;
+
+	public boolean isDisponible() {
+		return disponible;
 	}
 
-	public void setPlazas(int plazas) {
-		this.plazas = plazas;
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 
-	public String getDestino() {
-		return destino;
+
+	public String getLocalizacion() {
+		return localizacion;
 	}
 
-	public void setDestino(String destino) {
-		this.destino = destino;
+
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
 	}
 	
 	
-	
+
 	
 
 }

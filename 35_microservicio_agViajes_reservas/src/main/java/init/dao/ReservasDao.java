@@ -12,4 +12,6 @@ public interface ReservasDao {
 	@Query("select u from Reserva u where u.usuario=?1")
 	List<Reserva> findByusuario(String usuario);
 
+	void save(Reserva reserva);
+
 }

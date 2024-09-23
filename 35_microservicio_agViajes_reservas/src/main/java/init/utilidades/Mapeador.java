@@ -25,7 +25,7 @@ public ReservasDto resrevaEntityToDto (Reserva reserva) {
 			
 			
 			
-public Reserva reservasDtoToEntyti (ReservasDto reservaDto) {
+public Reserva reservasDtoToEntity (ReservasDto reservaDto) {
 	
 			return new Reserva(
 					reservaDto.getIdreserva(),
@@ -54,6 +54,18 @@ public HotelDto hotelEntityToDto (Hotel hotel) {
 		
 	}
 
+public Hotel hotelDtoToEntity (HotelDto hotelDto) {
+	
+			return new Hotel(
+					hotelDto.getIdHotel(),
+					hotelDto.getNombre(),
+					hotelDto.getCategoria(),
+					hotelDto.getPrecio(),
+					hotelDto.isDisponible(),
+					hotelDto.getLocalizacion());
+			
+			
+}
 public VuelosDto VuelosEntityToDto (Vuelo vuelo) {
 	
 			return new VuelosDto(
