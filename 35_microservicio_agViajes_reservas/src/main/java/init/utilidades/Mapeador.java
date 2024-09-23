@@ -15,11 +15,12 @@ public ReservasDto resrevaEntityToDto (Reserva reserva) {
 	
 			return new ReservasDto(
 					reserva.getIdreserva(),
-					reserva.getNombre(),
-					reserva.getDni(),
 					reserva.getHotel(),
 					reserva.getVuelo(),
-					reserva.getPrecio());
+					reserva.getPrecio(),
+					reserva.getUsuario());
+					
+					
 			
 }
 			
@@ -29,11 +30,10 @@ public Reserva reservasDtoToEntity (ReservasDto reservaDto) {
 	
 			return new Reserva(
 					reservaDto.getIdreserva(),
-					reservaDto.getNombre(),
-					reservaDto.getDni(),
 					reservaDto.getHotel(),
 					reservaDto.getVuelo(),
-					reservaDto.getPrecio());
+					reservaDto.getPrecio(),
+					reservaDto.getUsuario());
 	
 	
 

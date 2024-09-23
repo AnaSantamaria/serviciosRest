@@ -4,96 +4,82 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="hoteles")
+@Table(name="reservas")
 public class Reserva {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idHotel;
-	private String nombre;
-	private int categoria;
-	private double precio;
-	private boolean disponible;
-	private String localizacion;
+	private int idreserva;
 	
+	@ManyToOne
+    @JoinColumn(name = "idHotel", referencedColumnName = "idHotel")
+	private Hotel hotel;
+	@ManyToOne
+    @JoinColumn(name = "idvuelo", referencedColumnName = "idvuelo")
+	private Vuelo vuelo;
+	private double precio;
+	private String usuario;
 	
 	public Reserva() {
 		super();
 	}
 
-
-	public Reserva(int idHotel, String nombre, int categoria, double precio, boolean disponible, String localizacion) {
+	public Reserva(int idreserva, Hotel hotel, Vuelo vuelo, double precio, String usuario) {
 		super();
-		this.idHotel = idHotel;
-		this.nombre = nombre;
-		this.categoria = categoria;
+		this.idreserva = idreserva;
+		this.hotel = hotel;
+		this.vuelo = vuelo;
 		this.precio = precio;
-		this.disponible = disponible;
-		this.localizacion = localizacion;
+		this.usuario = usuario;
 	}
 
-
-	public int getIdHotel() {
-		return idHotel;
+	public int getIdreserva() {
+		return idreserva;
 	}
 
-
-	public void setIdHotel(int idHotel) {
-		this.idHotel = idHotel;
+	public void setIdreserva(int idreserva) {
+		this.idreserva = idreserva;
 	}
 
-
-	public String getNombre() {
-		return nombre;
+	public Hotel getHotel() {
+		return hotel;
 	}
 
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
-
-	public int getCategoria() {
-		return categoria;
+	public Vuelo getVuelo() {
+		return vuelo;
 	}
 
-
-	public void setCategoria(int categoria) {
-		this.categoria = categoria;
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
 	}
-
 
 	public double getPrecio() {
 		return precio;
 	}
 
-
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-
-	public boolean isDisponible() {
-		return disponible;
+	public String getUsuario() {
+		return usuario;
 	}
 
-
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
+	
+	
 
-
-	public String getLocalizacion() {
-		return localizacion;
-	}
-
-
-	public void setLocalizacion(String localizacion) {
-		this.localizacion = localizacion;
-	}
 	
 	
 

@@ -1,30 +1,27 @@
 package init.model;
 
+import init.entities.Hotel;
+import init.entities.Vuelo;
+
 public class ReservasDto {
 	
 	private int idreserva;
-	private String nombre;
-	private String dni;
-	private int hotel;
-	private int vuelo;
+	private Hotel hotel;
+	private Vuelo vuelo;
 	private double precio;
+	private String usuario;
 	
-	
+	public ReservasDto() {
+		super();
+	}
 
-	
-
-	public ReservasDto(int idreserva, String nombre, String dni, int hotel, int vuelo, double precio) {
+	public ReservasDto(int idreserva, Hotel hotel, Vuelo vuelo, double precio, String usuario) {
 		super();
 		this.idreserva = idreserva;
-		this.nombre = nombre;
-		this.dni = dni;
 		this.hotel = hotel;
 		this.vuelo = vuelo;
 		this.precio = precio;
-	}
-
-	public ReservasDto() {
-		super();
+		this.usuario = usuario;
 	}
 
 	public int getIdreserva() {
@@ -35,35 +32,19 @@ public class ReservasDto {
 		this.idreserva = idreserva;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public int getHotel() {
+	public Hotel getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(int hotel) {
+	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
 
-	public int getVuelo() {
+	public Vuelo getVuelo() {
 		return vuelo;
 	}
 
-	public void setVuelo(int vuelo) {
+	public void setVuelo(Vuelo vuelo) {
 		this.vuelo = vuelo;
 	}
 
@@ -74,6 +55,18 @@ public class ReservasDto {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-		
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	
+
+	
+
+	
 
 }

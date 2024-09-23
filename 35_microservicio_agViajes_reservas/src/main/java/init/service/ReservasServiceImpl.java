@@ -9,6 +9,7 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import init.dao.ReservasDao;
+import init.entities.Reserva;
 import init.model.HotelDto;
 import init.model.ReservasDto;
 import init.model.VuelosDto;
@@ -30,11 +31,37 @@ public class ReservasServiceImpl implements ReservasService {
 	@Override
 	public boolean altaReserva(HotelDto hotel, int plazas) {
 		
+		VuelosDto vuelodto = reservarVuelo(VuelosDto.getIdvuelo(), plazas);
+	    if (vuelodto == null) {
+	      
+	        return false;
+	    }
 		
-		
-		
-		return false;
+	    HotelDto hoteldto = reservarHotel(HotelDto.getLocalizacion());
+	    if (hotel == null) {
+	        
+	        return false;
+	    }
+	    
+	    // Crear reserva con los datos obtenidos
+	    
+	    
+	    Reserva reserva = new Reserva();
+	    reserva.setHotel(mapeador.hotelDtoToEntity(hotel));
+	    reserva.setVuelo(mapeador.vuelosDtoToEntity(vuelo));
+	    reserva.setPlazas(plazas);
+	    reserva.setPrecioTotal(plazas * (hotel.getPrecio() + vuelo.getPrecio()));
+	    
+	    // Guardar reserva
+	    reservasDao.save(reserva);
+	    
+	    // Actualizar las plazas del vuelo
+	    actualizarPlazasVuelo(vuelo.getIdVuelo(), plazas);
+
+	    return true;
 	}
+	
+	
 
 	@Override
 	public List<ReservasDto> listaDeReservas(String usuario) {
