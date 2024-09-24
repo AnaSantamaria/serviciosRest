@@ -1,13 +1,17 @@
 package init.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import init.entities.Hotel;
 import init.entities.Vuelo;
 
 public class ReservasDto {
 	
 	private int idreserva;
-	private Hotel hotel;
-	private Vuelo vuelo;
+	@JsonProperty(value ="hotel")
+	private HotelDto hotel;
+	@JsonProperty(value="vuelo")
+	private VuelosDto vuelo;
 	private double precio;
 	private String usuario;
 	
@@ -15,7 +19,7 @@ public class ReservasDto {
 		super();
 	}
 
-	public ReservasDto(int idreserva, Hotel hotel, Vuelo vuelo, double precio, String usuario) {
+	public ReservasDto(int idreserva, HotelDto hotel, VuelosDto vuelo, double precio, String usuario) {
 		super();
 		this.idreserva = idreserva;
 		this.hotel = hotel;
@@ -32,19 +36,19 @@ public class ReservasDto {
 		this.idreserva = idreserva;
 	}
 
-	public Hotel getHotel() {
+	public HotelDto getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(Hotel hotel) {
+	public void setHotel(HotelDto hotel) {
 		this.hotel = hotel;
 	}
 
-	public Vuelo getVuelo() {
+	public VuelosDto getVuelo() {
 		return vuelo;
 	}
 
-	public void setVuelo(Vuelo vuelo) {
+	public void setVuelo(VuelosDto vuelo) {
 		this.vuelo = vuelo;
 	}
 
@@ -63,8 +67,8 @@ public class ReservasDto {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	
 
+	
 	
 
 	

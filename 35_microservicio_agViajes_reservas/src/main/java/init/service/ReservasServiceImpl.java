@@ -9,7 +9,9 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import init.dao.ReservasDao;
+import init.entities.Hotel;
 import init.entities.Reserva;
+import init.entities.Vuelo;
 import init.model.HotelDto;
 import init.model.ReservasDto;
 import init.model.VuelosDto;
@@ -29,100 +31,98 @@ public class ReservasServiceImpl implements ReservasService {
 	RestClient restClient;
 	
 	@Override
-	public boolean altaReserva(HotelDto hotel, int plazas) {
+    public boolean altaReserva(ReservasDto reservaDto, int plazas) {
 		
-		VuelosDto vuelodto = reservarVuelo(VuelosDto.getIdvuelo(), plazas);
-	    if (vuelodto == null) {
-	      
-	        return false;
-	    }
 		
-	    HotelDto hoteldto = reservarHotel(HotelDto.getLocalizacion());
-	    if (hotel == null) {
-	        
-	        return false;
-	    }
-	    
-	    // Crear reserva con los datos obtenidos
-	    
-	    
-	    Reserva reserva = new Reserva();
-	    reserva.setHotel(mapeador.hotelDtoToEntity(hotel));
-	    reserva.setVuelo(mapeador.vuelosDtoToEntity(vuelo));
-	    reserva.setPlazas(plazas);
-	    reserva.setPrecioTotal(plazas * (hotel.getPrecio() + vuelo.getPrecio()));
-	    
-	    // Guardar reserva
-	    reservasDao.save(reserva);
-	    
-	    // Actualizar las plazas del vuelo
-	    actualizarPlazasVuelo(vuelo.getIdVuelo(), plazas);
+        // Obtener vuelo desde el servicio de vuelos
+		
+        Vuelo vuelo = reservarVuelo(reservaDto.getVuelo().getIdvuelo(), plazas);
+        if (vuelo == null) {
+            return false;
+        }
 
-	    return true;
-	}
-	
-	
+        // Obtener hotel desde el servicio de hoteles
+        Hotel hotel = reservarHotel(vuelo.getDestino());
+        if (hotel == null) {
+            return false;
+        }
 
+        // Calcular precio total
+        double precioTotal = (hotel.getPrecio() + vuelo.getPrecio()) * plazas;
+
+        // Crear y guardar la reserva
+        Reserva reserva = new Reserva();
+        reserva.setHotel(hotel);
+        reserva.setVuelo(vuelo);
+        reserva.setPrecio(precioTotal);
+        reserva.setUsuario(reservaDto.getUsuario());
+
+        reservasDao.save(reserva);
+
+        // Actualizar las plazas del vuelo
+        updatePlazas(vuelo.getIdvuelo(), plazas);
+
+        return true;
+    }
+	
 	@Override
-	public List<ReservasDto> listaDeReservas(String usuario) {
-		
+	public List<ReservasDto> listaDeReservas (String usuario) {
 		return reservasDao.findByusuario(usuario)
 				.stream()
-				.map(r->mapeador.resrevaEntityToDto(r))
+				.map(r->mapeador.reservaEntityToDto(r))
 				.toList();
+		
 	}
-  //Metodos auxiliar
-	public HotelDto reservarHotel (String localizacion) {
-		URI uri = UriComponentsBuilder
-	            .fromHttpUrl(urlHoteles)
-	            .pathSegment("buscarLocalizacion")
-	            .queryParam("localizacion", localizacion)
-	            .build()
-	            .toUri();
+		
 
-	    return Arrays.stream(restClient.get()
-	            .uri(uri)
-	            .retrieve()
-	            .body(HotelDto[].class))
-	            .findFirst()
-	            .orElse(null);
-	}
-		
-		
-		
-		
+    // Método para obtener vuelo desde el microservicio de vuelos
 	
-	//metodo auxiliar
-	public VuelosDto reservarVuelo (int idvuelo, int plazas) {
-		URI uri = UriComponentsBuilder
-	            .fromHttpUrl(urlVuelos)
-	            .pathSegment("disponibilidad")
-	            .queryParam("idVuelo", idvuelo)
-	            .queryParam("plazas", plazas)
-	            .build()
-	            .toUri();
+    public Vuelo reservarVuelo(int idVuelo, int plazas) {
+        URI uri = UriComponentsBuilder
+            .fromHttpUrl(urlVuelos)
+            .pathSegment(String.valueOf(idVuelo))
+            .build()
+            .toUri();
 
-	    return restClient.get()
-	            .uri(uri)
-	            .retrieve()
-	            .body(VuelosDto.class);
-	}
+        return restClient
+            .get()
+            .uri(uri)
+            .retrieve()
+            .body(Vuelo.class);
+    }
+
+    // Método para obtener hotel desde el microservicio de hoteles
+    public Hotel reservarHotel(String localizacion) {
+        URI uri = UriComponentsBuilder
+            .fromHttpUrl(urlHoteles)
+            .pathSegment("buscarLocalizacion", localizacion)
+            .build()
+            .toUri();
+
+        return restClient
+            .get()
+            .uri(uri)
+            .retrieve()
+            .body(Hotel.class);
+    }
+
+    // Método para actualizar las plazas en el microservicio de vuelos
+    public void updatePlazas(int idVuelo, int plazas) {
+        URI uri = UriComponentsBuilder
+            .fromHttpUrl(urlVuelos)
+            .pathSegment("actualizarPlazas")
+            .queryParam("idVuelo", idVuelo)
+            .queryParam("plazas", plazas)
+            .build()
+            .toUri();
+
+        restClient
+            .put()
+            .uri(uri)
+            .retrieve();
+    }
+
 	
-	//metodo auxiliar
-	public void actualizarPlazasVuelo(int idvuelo, int plazas) {
-	    URI uri = UriComponentsBuilder
-	            .fromHttpUrl(urlVuelos)
-	            .pathSegment("actualizarPlazas")
-	            .queryParam("idvuelo", idvuelo)
-	            .queryParam("plazas", plazas)
-	            .build()
-	            .toUri();
-
-	    restClient.put()
-	            .uri(uri)
-	            .retrieve()
-	            .toBodilessEntity();
-	}
 		
 	}
 	

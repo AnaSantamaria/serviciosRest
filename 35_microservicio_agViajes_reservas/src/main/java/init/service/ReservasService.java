@@ -10,7 +10,7 @@ public interface ReservasService {
 	
 	//Alta de la misma con los datos de reserva 
 	
-	boolean altaReserva(HotelDto hotel, int plazas);
+	public boolean altaReserva(ReservasDto reservaDto, int plazas);
 			
 			// Lista de reservas por cliente
 

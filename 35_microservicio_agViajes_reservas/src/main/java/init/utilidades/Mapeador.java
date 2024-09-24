@@ -11,33 +11,29 @@ public class Mapeador {
 	
 	
 	
-public ReservasDto resrevaEntityToDto (Reserva reserva) {
-	
-			return new ReservasDto(
-					reserva.getIdreserva(),
-					reserva.getHotel(),
-					reserva.getVuelo(),
-					reserva.getPrecio(),
-					reserva.getUsuario());
-					
-					
-			
-}
-			
-			
-			
-public Reserva reservasDtoToEntity (ReservasDto reservaDto) {
-	
-			return new Reserva(
-					reservaDto.getIdreserva(),
-					reservaDto.getHotel(),
-					reservaDto.getVuelo(),
-					reservaDto.getPrecio(),
-					reservaDto.getUsuario());
-	
+	public ReservasDto reservaEntityToDto(Reserva reserva) {
+        return new ReservasDto(
+                reserva.getIdreserva(),
+                hotelEntityToDto(reserva.getHotel()),  // Convierte el hotel a DTO
+                vuelosEntityToDto(reserva.getVuelo()), // Convierte el vuelo a DTO
+                reserva.getPrecio(),
+                reserva.getUsuario()
+        );
+    }
+
+    // Método para mapear ReservasDto a Reserva Entity
+    public Reserva reservasDtoToEntity(ReservasDto reservaDto) {
+        return new Reserva(
+                reservaDto.getIdreserva(),
+                hotelDtoToEntity(reservaDto.getHotel()),  // Convierte el hotel DTO a entidad
+                vuelosDtoToEntity(reservaDto.getVuelo()), // Convierte el vuelo DTO a entidad
+                reservaDto.getPrecio(),
+                reservaDto.getUsuario()
+        );
+    }
 	
 
-}
+
 	
 	
 	
@@ -66,7 +62,7 @@ public Hotel hotelDtoToEntity (HotelDto hotelDto) {
 			
 			
 }
-public VuelosDto VuelosEntityToDto (Vuelo vuelo) {
+public VuelosDto vuelosEntityToDto (Vuelo vuelo) {
 	
 			return new VuelosDto(
 							vuelo.getIdvuelo(),
