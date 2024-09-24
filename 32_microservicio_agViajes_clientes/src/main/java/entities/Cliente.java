@@ -17,19 +17,19 @@ public class Cliente {
 	private String usuario;
 	private String password;
 	private String direccion;
-	private String targeta ;
+	private String tarjeta ;
 	private String dni;
 	
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(String usuario, String password, String direccion, String targeta, String dni) {
+	public Cliente(String usuario, String password, String direccion, String tarjeta , String dni) {
 		super();
 		this.usuario = usuario;
 		this.password = password;
 		this.direccion = direccion;
-		this.targeta = targeta;
+		this.tarjeta  = tarjeta ;
 		this.dni = dni;
 	}
 
@@ -57,12 +57,12 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 
-	public String getTargeta() {
-		return targeta;
+	public String getTarjeta() {
+		return tarjeta ;
 	}
 
-	public void setTargeta(String targeta) {
-		this.targeta = targeta;
+	public void setTargeta(String tarjeta) {
+		this.tarjeta  = tarjeta ;
 	}
 
 	public String getDni() {
