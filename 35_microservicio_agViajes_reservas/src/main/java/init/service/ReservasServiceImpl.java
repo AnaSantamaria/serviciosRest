@@ -1,10 +1,10 @@
 package init.service;
 
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -12,11 +12,9 @@ import init.dao.ReservasDao;
 import init.entities.Hotel;
 import init.entities.Reserva;
 import init.entities.Vuelo;
-import init.model.HotelDto;
 import init.model.ReservasDto;
-import init.model.VuelosDto;
 import init.utilidades.Mapeador;
-
+@Service
 public class ReservasServiceImpl implements ReservasService {
 	
 	String urlVuelos="http://servicio-vuelos/vuelos/";

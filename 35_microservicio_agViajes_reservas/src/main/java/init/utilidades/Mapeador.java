@@ -1,5 +1,7 @@
 package init.utilidades;
 
+import org.springframework.stereotype.Component;
+
 import init.entities.Hotel;
 import init.entities.Reserva;
 import init.entities.Vuelo;
@@ -7,6 +9,7 @@ import init.model.HotelDto;
 import init.model.ReservasDto;
 import init.model.VuelosDto;
 
+@Component
 public class Mapeador {
 	
 	

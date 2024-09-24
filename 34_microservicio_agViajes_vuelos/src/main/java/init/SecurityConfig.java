@@ -19,7 +19,7 @@ public class SecurityConfig {
     public JdbcUserDetailsManager users() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://10.1.3.100:3306/springsecurity");
+        ds.setUrl("jdbc:mysql://10.1.3.24:3306/springsecurity");
         ds.setUsername("root");
         ds.setPassword("root");
         
