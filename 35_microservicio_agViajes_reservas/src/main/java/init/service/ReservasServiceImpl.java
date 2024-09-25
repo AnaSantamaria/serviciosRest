@@ -58,7 +58,7 @@ public class ReservasServiceImpl implements ReservasService {
         reservasDao.save(reserva);
 
         // Actualizar las plazas del vuelo
-        updatePlazas(vuelo.getIdvuelo(), plazas);
+        actualizarPlazas(vuelo.getIdvuelo(), plazas);
 
         return true;
     }
@@ -72,7 +72,8 @@ public class ReservasServiceImpl implements ReservasService {
 		
 	}
 		
-
+     //Métodos auxiliares
+	
     // Método para obtener vuelo desde el microservicio de vuelos
 	
     public Vuelo reservarVuelo(int idVuelo, int plazas) {
@@ -105,7 +106,7 @@ public class ReservasServiceImpl implements ReservasService {
     }
 
     // Método para actualizar las plazas en el microservicio de vuelos
-    public void updatePlazas(int idVuelo, int plazas) {
+    public void actualizarPlazas(int idVuelo, int plazas) {
         URI uri = UriComponentsBuilder
             .fromHttpUrl(urlVuelos)
             .pathSegment("actualizarPlazas")
