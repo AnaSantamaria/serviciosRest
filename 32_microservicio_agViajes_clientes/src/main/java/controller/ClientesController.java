@@ -47,7 +47,7 @@ public class ClientesController {
 			
 			return new ResponseEntity<>(cliente,HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
 		
 	
 	}

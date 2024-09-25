@@ -17,10 +17,10 @@ public class Reserva {
 	private int idreserva;
 	
 	@ManyToOne
-    @JoinColumn(name = "idHotel", referencedColumnName = "idHotel")
+    @JoinColumn(name = "Hotel", referencedColumnName = "idHotel")
 	private Hotel hotel;
 	@ManyToOne
-    @JoinColumn(name = "idvuelo", referencedColumnName = "idvuelo")
+    @JoinColumn(name = "Vuelo", referencedColumnName = "idvuelo")
 	private Vuelo vuelo;
 	private double precio;
 	private String usuario;

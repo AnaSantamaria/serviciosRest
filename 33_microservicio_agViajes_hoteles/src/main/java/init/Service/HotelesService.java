@@ -12,5 +12,7 @@ public interface HotelesService {
 	   HotelDto buscarPorId (int idHotel);
 	   
 	   List<HotelDto> buscarPorLocalizacion (String localizacion);
+	   
+	   List<String> buscarDestinos();
 
 }

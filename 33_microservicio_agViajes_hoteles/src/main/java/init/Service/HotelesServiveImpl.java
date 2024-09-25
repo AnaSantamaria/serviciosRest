@@ -43,4 +43,15 @@ public class HotelesServiveImpl implements HotelesService {
 				.toList();
 	}
 
+	@Override
+	public List<String> buscarDestinos() {
+		return hotelesDao.findDistinctDestinos()
+				.stream()
+				.toList();
+		
+		
+		 
+		
+	}
+
 }
